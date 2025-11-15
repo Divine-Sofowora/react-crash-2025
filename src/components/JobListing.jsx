@@ -1,5 +1,6 @@
 import React, { useState } from 'react'          // Import React and useState hook
 import { FaMapMarker } from 'react-icons/fa'     // Import location icon
+import { Link } from 'react-router-dom'
 
 const JobListing = ({ job }) => {
   const [showFullDescription, setShowFullDescription] = useState(false) // Track if full description is shown
@@ -35,12 +36,12 @@ const JobListing = ({ job }) => {
           </div>
 
           {/* Link to job details */}
-          <a 
-            href={`/job/${job.id}`} 
+          <Link 
+            to={`/job/${job.id}`} 
             className="h-9 bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg text-center text-sm"
           >
             Read More
-          </a>
+          </Link>
         </div>
       </div>
     </div>
