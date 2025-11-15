@@ -1,13 +1,21 @@
 import React from 'react'
-import jobs from '../jobs.json'
+import { useState, useEffect } from 'react'
 import JobListing from './JobListing'
 
 
 const JobListings = ( {isHome = false}) => {
-    // Determine which list of jobs to display based on the 'isHome' prop.
-    // If isHome is true, show only the first 3 jobs (recent jobs).
-    // If isHome is false (the default), show all jobs.
-    const JobsListings = isHome ? jobs.slice(0,3) : jobs
+    const [jobs, setJobs] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => { 
+     
+      const fetchJobs = async () => {
+        const res = await fetch('http://localhost:8000/jobs')
+        const data = await res.json();
+        setJobs(data)
+      }
+
+    }, [])
 
   return (
     <section className="bg-blue-50 px-4 py-10">
