@@ -8,11 +8,17 @@ const JobListings = ( {isHome = false}) => {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => { 
-     
       const fetchJobs = async () => {
-        const res = await fetch('http://localhost:8000/jobs')
-        const data = await res.json();
-        setJobs(data)
+        try{
+          const res = await fetch('http://localhost:8000/jobs')
+          const data = await res.json();
+          setJobs(data)
+        }catch(error){
+          console.log('Error fetching data', error)
+        } finally{
+          setLoading(false)
+        }
+        
       }
 
     }, [])
