@@ -1,26 +1,37 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react' // Import useState and useEffect hooks
 import JobListing from './JobListing'
+import Spinner from './Spinner' // Import the Spinner component for loading state
 
 
 const JobListings = ( {isHome = false}) => {
+    // 1. STATE: State to hold the fetched job data (initialized as an empty array)
     const [jobs, setJobs] = useState([])
+    
+    // 2. STATE: State to track the loading status (initialized to true, meaning data fetching is starting)
     const [loading, setLoading] = useState(true)
 
+    // 3. EFFECT: useEffect hook runs code after the component renders
     useEffect(() => { 
       const fetchJobs = async () => {
         try{
+          // Fetch data from the specified API endpoint
           const res = await fetch('http://localhost:8000/jobs')
           const data = await res.json();
+          
+          // Update the 'jobs' state with the fetched data
           setJobs(data)
         }catch(error){
+          // Log any errors that occur during the fetch process
           console.log('Error fetching data', error)
         } finally{
+          // Set loading to false regardless of success or failure
+          // This ensures the spinner disappears after the attempt is finished
           setLoading(false)
         }
         
       }
-
+      fetchJobs();
     }, [])
 
   return (
@@ -31,15 +42,22 @@ const JobListings = ( {isHome = false}) => {
           {isHome ? 'Recent Jobs' : 'Browse Jobs'}
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Map over the selected job list (JobsListings) and render a JobListing component for each job */}
-            { JobsListings.map((job) => (
-                <JobListing 
-                    key={job.id} // Unique key for list rendering optimization
-                    job={ job } // Pass the individual job object as a prop
-                />
-            ))}
-        </div>
+        {/* CONDITIONAL RENDERING: Check the loading state */}
+        {loading ? (
+            // If 'loading' is true, display the Spinner component
+            <Spinner loading ={loading}/>
+        ) : (
+            // If 'loading' is false (data is fetched), display the job grid
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                { jobs.map((job) => (
+                    <JobListing 
+                        key={job.id} 
+                        job={ job } 
+                    />
+                ))}
+            </div>
+        )}
+            
       </div>
     </section>
   )
