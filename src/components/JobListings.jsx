@@ -14,9 +14,10 @@ const JobListings = ( {isHome = false}) => {
     // 3. EFFECT: useEffect hook runs code after the component renders
     useEffect(() => { 
       const fetchJobs = async () => {
+        const apiUrl = isHome ? 'http://localhost:8000/jobs?_limit=3' : 'http://localhost:8000/jobs'
         try{
           // Fetch data from the specified API endpoint
-          const res = await fetch('http://localhost:8000/jobs')
+          const res = await fetch(apiUrl)
           const data = await res.json();
           
           // Update the 'jobs' state with the fetched data
