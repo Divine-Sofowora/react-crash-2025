@@ -1,5 +1,5 @@
 {
-  "jobs" : [
+  "jobs": [
     {
       "id": "1",
       "title": "Senior React Developer",
@@ -82,6 +82,34 @@
         "description": "Port Solutions is a leading technology company specializing in software development and digital marketing. We are committed to providing our clients with cutting-edge solutions and our employees with a supportive and rewarding work environment.",
         "contactEmail": "contact@ipsumlorem.com",
         "contactPhone": "555-555-5555"
+      }
+    },
+    {
+      "id": "e54b",
+      "title": "new job",
+      "type": "Full-Time",
+      "location": "London, Ontario",
+      "description": "this is a new job i just got",
+      "salary": "Under $50k",
+      "company": {
+        "name": "The name of the company ",
+        "description": "kjg",
+        "contactEmail": "test@test.com",
+        "contactPhone": "532467346"
+      }
+    },
+    {
+      "id": "e3ad",
+      "title": "stuwu",
+      "type": "Remote",
+      "location": "wtreuyw",
+      "description": "wtyrw5",
+      "salary": "$70K - 80K",
+      "company": {
+        "name": "werty",
+        "description": "wetruyu",
+        "contactEmail": "2yrd@tsstg.com",
+        "contactPhone": "4363463564"
       }
     }
   ]
